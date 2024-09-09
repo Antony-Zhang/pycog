@@ -11,7 +11,7 @@ with the modifications described in
 from __future__ import absolute_import
 from __future__ import division
 
-import cPickle as pickle
+import pickle as pickle
 import datetime
 import os
 import sys

@@ -4,7 +4,7 @@ Analyze variants of the random dots motion task.
 """
 from __future__ import division
 
-import cPickle as pickle
+import pickle as pickle
 import os
 import sys
 from   os.path import join

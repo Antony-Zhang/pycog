@@ -4,7 +4,7 @@ Analyze variants of the Lee sequence generation task.
 """
 from __future__ import division
 
-import cPickle as pickle
+import pickle as pickle
 import os
 import sys
 

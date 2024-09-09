@@ -2,7 +2,7 @@
 from __future__ import division
 
 import argparse
-import cPickle as pickle
+import pickle as pickle
 import imp
 import os
 from   os.path import join
