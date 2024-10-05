@@ -331,8 +331,9 @@ def tuning(sortedfile):
         for j in xrange(len(t)):
             slope, intercept, rval, pval, stderr = stats.linregress(f1s, data[i,j])
             a1s[i,j]   = slope
-            pvals[i,j] = pval
+            pvals[i,j] = pval   # 使用检验统计量为t分布的Wald-test 得到的p-value (零假设为slope=0)
 
+    # shape of a1s & pvals: (units, time)
     return units, a1s, pvals
 
 def tuning_corr(trialsfile, sortedfile, plot_sig, plot_corr=None,
@@ -353,10 +354,10 @@ def tuning_corr(trialsfile, sortedfile, plot_sig, plot_corr=None,
     delay_end = 1e-3*(delay_end - t0)
 
     t_stim   = np.mean(info['epochs']['f1'])
-    idx_stim = np.where(t >= t_stim)[0][0]
+    idx_stim = np.where(t >= t_stim)[0][0]          # stimulus period 中间的t
 
     t_delay   = np.mean(info['epochs']['delay'])
-    idx_delay = np.where(t >= t_delay)[0][0]
+    idx_delay = np.where(t >= t_delay)[0][0]        # delay period 中间的t
 
     t_delay_end   = info['epochs']['delay'][1]
     idx_delay_end = np.where(t > t_delay_end)[0][0]
@@ -371,15 +372,17 @@ def tuning_corr(trialsfile, sortedfile, plot_sig, plot_corr=None,
     if plot_corr is not None:
         plot = plot_corr
 
-        # With stimulus period
+        # With stimulus period 
         corr = []
         for k in idx_all:
-            corr.append(stats.pearsonr(a1s[:,idx_stim], a1s[:,k])[0])
+            # 逐个计算 对所有units, 每个时间点的a1 与 stimulus period末尾的a1 之间的相关系数
+            corr.append(stats.pearsonr(a1s[:,idx_stim], a1s[:,k])[0]) 
         plot.plot(t_all, corr, color=Figure.colors('blue'), lw=kwargs.get('lw', 1))
 
         # With stimulus period
         corr = []
         for k in idx_all:
+            # 逐个计算 对所有units, 每个时间点的a1 与 delay period中间的a1 之间的相关系数
             corr.append(stats.pearsonr(a1s[:,idx_delay], a1s[:,k])[0])
         plot.plot(t_all, corr, color=Figure.colors('green'), lw=kwargs.get('lw', 1))
 
@@ -390,7 +393,7 @@ def tuning_corr(trialsfile, sortedfile, plot_sig, plot_corr=None,
     if plot_sig is not None:
         plot = plot_sig
 
-        psig = np.sum(1*(pvals < 0.05), axis=0)/len(units)
+        psig = np.sum(1*(pvals < 0.05), axis=0)/len(units)  # significantly tuned(p-value<0.05) 的unit占比
         plot.plot(1e-3*(t[1:idx_f2_end]-t0), psig[1:idx_f2_end],
                   color='0.2', lw=kwargs.get('lw', 1))
 
