@@ -781,7 +781,7 @@ class RNN(object):
             plot = plots['Win_dist']
 
             # Label
-            plot.text_upper_right(r'$\boldsymbol{W}_\text{\textbf{in}}$',
+            plot.text_upper_right(r'$\mathbf{W}_\text{\textbf{in}}$',
                                   fontsize=7, dy=-0.02)
 
             W       = self.Win

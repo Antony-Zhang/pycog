@@ -9,10 +9,16 @@ from   os.path import join
 
 import numpy as np
 
+print(os.path.abspath(os.path.join(os.path.dirname(__file__), '../examples/analysis')))
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../examples/analysis')))
+import romo
+# from examples.analysis import romo
+
 from pycog             import RNN
 from pycog.figtools    import Figure, mpl
 from pycog.utils       import get_here, get_parent
-from examples.analysis import romo
+
+
 
 import paper
 

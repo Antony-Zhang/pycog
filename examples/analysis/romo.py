@@ -27,7 +27,7 @@ def get_trialsfile(p):
 
 # Load trials
 def load_trials(trialsfile):
-    with open(trialsfile) as f:
+    with open(trialsfile, 'rb') as f:   # 'read binary' mode, otherwise EOFError
         trials = pickle.load(f)
 
     return trials, len(trials)
@@ -258,7 +258,7 @@ def plot_unit(unit, sortedfile, plot, smap, t0=0, tmin=-np.inf, tmax=np.inf, **k
 
     """
     # Load sorted trials
-    with open(sortedfile) as f:
+    with open(sortedfile, 'rb') as f:       # 'read binary' mode, otherwise EOFError
         t, sorted_trials = pickle.load(f)
 
     # Time
@@ -309,7 +309,7 @@ def tuning(sortedfile):
 
     """
     # Load sorted trials
-    with open(sortedfile) as f:
+    with open(sortedfile, 'rb') as f:       # 'read binary' mode, otherwise EOFError
         t, sorted_trials = pickle.load(f)
 
     # Get f1s
@@ -485,7 +485,7 @@ def do(action, args, p):
 
         # Load sorted trials
         sortedfile = get_sortedfile(p)
-        with open(sortedfile) as f:
+        with open(sortedfile, 'rb') as f:   # 'read binary' mode, otherwise EOFError
             t, sorted_trials = pickle.load(f)
 
         # Colormap

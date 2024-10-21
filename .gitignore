@@ -7,10 +7,10 @@
 *.egg-info/
 build/
 dist/
-examples/work/
-paper/figs/
-paper/paper/
-paper/times/
+# examples/work/
+# paper/figs/
+# paper/paper/
+# paper/times/
 talks/
 tests/
-work/
+# work/
