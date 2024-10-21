@@ -2,7 +2,7 @@
 Useful functions.
 
 """
-import pickle as pickle
+import cPickle as pickle
 import errno
 import os
 import signal

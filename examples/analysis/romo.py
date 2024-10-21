@@ -4,7 +4,7 @@ Analyze the Romo task.
 """
 from __future__ import division
 
-import pickle as pickle
+import cPickle as pickle
 import os
 import sys
 from   os.path import join

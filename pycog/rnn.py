@@ -5,7 +5,7 @@ Recurrent neural network for testing networks outside of Theano.
 from __future__ import absolute_import
 from __future__ import division
 
-import pickle as pickle
+import cPickle as pickle
 import os
 import shutil
 import sys
